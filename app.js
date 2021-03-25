@@ -15,15 +15,58 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+  //creating global variable array to store posts
+    let posts = [];
 
-  //This line code will render the ejs webpage
+
+  //This line code will render the  home.ejs webpage
 app.get("/",function(req,res){
 
   res.render("home",{startingcontent:homeStartingContent});
 
+  console.log(posts);
+
 })
 
 
+      //This line code will render the Contact.ejs webpage
+    app.get("/contact",function(req,res){
+      res.render("contact",{contact:contactContent});
+    })
+
+      //This line code will render the about.ejs webpage
+      app.get("/about",function(req,res){
+        res.render("about",{about:aboutContent});
+      })
+
+      //This line code will render the compose.ejs webpage
+      app.get("/compose",function(req,res){
+        res.render("compose");
+      })
+
+
+
+
+
+      app.post("/compose",function(req,res){
+
+        //creating javascript object to for postbody and post title
+        const post={
+           title : req.body.posttitle,
+           post : req.body.postbody
+
+        };
+
+        //this code is to push/add the post into the array which we created on the top as var posts=[];
+        posts.push(post);
+        //this line of code will redirect to home page after each post is submitted
+        res.redirect("/");
+
+
+
+
+
+      })
 
 
 
