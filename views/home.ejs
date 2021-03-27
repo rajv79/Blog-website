@@ -4,4 +4,16 @@
   <h1>Home</h1>
   <p><%=startingcontent%></p>
 
+
+
+
+
+//this line of code will help to write and display the title and post  body in the home route
+      <% posts.forEach(function(post){%>
+        <h1><%=post.title%></h1>
+        <p>
+          <%=post.post%>
+          </p>
+
+    <%  })%>
   <%- include("partials/footer") -%>
